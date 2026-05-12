@@ -1,12 +1,12 @@
 'use client'
 import { AlertDialog, Button, Table } from "@heroui/react";
 import Link from "next/link";
-import { deleteUser } from "../lib/actions";
 
-const UsersTable = ({ users }) => {
+
+const UsersTable = ({ users , deleteUserAction}) => {
 
   const handleDelete =async (userId) => {
-    await deleteUser(userId)
+    await deleteUserAction(userId)
   }
   return (
     <Table>
@@ -33,7 +33,7 @@ const UsersTable = ({ users }) => {
                   </Link>
 
                   <AlertDialog>
-                    <Button onClick={()=> handleDelete(user._id)} variant="danger">Delete</Button>
+                    <Button variant="danger">Delete</Button>
                     <AlertDialog.Backdrop>
                       <AlertDialog.Container>
                         <AlertDialog.Dialog className="sm:max-w-100">
@@ -55,7 +55,7 @@ const UsersTable = ({ users }) => {
                             <Button slot="close" variant="tertiary">
                               Cancel
                             </Button>
-                            <Button slot="close" variant="danger">
+                            <Button onClick={()=> handleDelete(user._id)}  slot="close" variant="danger">
                               Delete Project
                             </Button>
                           </AlertDialog.Footer>

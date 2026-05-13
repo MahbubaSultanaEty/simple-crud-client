@@ -28,7 +28,7 @@ const UsersTable = ({ users , deleteUserAction}) => {
                   <Link href={`/users/${user._id}`}>
                     <Button variant="outline">Details</Button>
                   </Link>
-                  <Link href={`/users/${user._id}`}>
+                  <Link href={`/users/${user._id}/edit`}>
                     <Button variant="outline">Edit</Button>
                   </Link>
 
@@ -56,7 +56,7 @@ const UsersTable = ({ users , deleteUserAction}) => {
                               Cancel
                             </Button>
                             <Button onClick={()=> handleDelete(user._id)}  slot="close" variant="danger">
-                              Delete Project
+                              Delete Permanently?
                             </Button>
                           </AlertDialog.Footer>
                         </AlertDialog.Dialog>

@@ -6,7 +6,7 @@ import { getUsers } from '../lib/data';
 const UsersPage = async() => {
     const users = await getUsers();
     return (
-        <div>
+        <div className='bg-black'>
             <div className='flex justify-between m-4'>
                 <h1>Users Management : {users.length}</h1> 
                 <AddUserModal createUserAction={createUser} />

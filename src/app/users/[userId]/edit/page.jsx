@@ -1,17 +1,23 @@
+import { updateUser } from "@/app/lib/actions";
 import { getUserById } from "@/app/lib/data";
 import { Button, Card, Input, Label, Modal, TextField } from "@heroui/react";
 import React from "react";
 
-const EditUSerPage = async ({ params }) => {
+const EditUserPage = async ({ params }) => {
   const { userId } = await params;
   const user = await getUserById(userId);
-  console.log("editing user", user);
+    console.log("editing user", user);
+    
+    const updateUserWrapper = async(formData) => {
+        'use server'
+        return updateUser(userId, formData);
+    }
   return (
    
-          <div className="m-8 max-w-[100px]">
-               <Card >
-              <h2>Editing User: {user.name}</h2>
-        <form action={``} className="flex flex-col gap-4">
+          <div className="m-8 bg-black/30 ">
+          <Card>
+               <h2>Editing User: {user.name}</h2>
+        <form action={updateUserWrapper} className="flex flex-col gap-4">
           <TextField className="w-full" name="name" type="text" defaultValue={user?.name}>
             <Label>Name</Label>
             <Input placeholder="Enter your name" />
@@ -34,10 +40,12 @@ const EditUSerPage = async ({ params }) => {
             </Button>
           </div>
         </form>
-      </Card>
+          </Card>   
+         
+     
           </div>
 
   );
 };
 
-export default EditUSerPage;
+export default EditUserPage;
